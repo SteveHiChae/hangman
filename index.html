@@ -21,25 +21,17 @@
         ]
 
         // Pick a random word
-        // var word = words[Math.floor(Math.random() * words.length)] 
-
-
-        // Set up the answer array
-        // var answerArray = []
-        // for (var i=0; i<word.length; i++) {
-        //     answerArray[i] = "_"
-        // }
-
         function pickWord() {
             return words[Math.floor(Math.random() * words.length)]
         }
 
+        // Set up the answer array
         var answerArray = []
-        function setupAnserArray(word) {
+        function setupAnswerArray(word) {
             for (var i=0; i<word.length; i++) {
                 answerArray[i] = '_'
             }
-
+            return answerArray
         }
 
         function showPlayerProgress(answerArray) {
@@ -51,9 +43,29 @@
             return guess
         }
 
+        function correctGuess(guess, word, answerArray) {
+            var correct = 0
+            for (var j=0; j<word.length; j++) {
+                if (word[j] === guess) {
+                    if (answerArray[j] !== '_') {
+                        alert("You've already got that letter")
+                    } else {
+                        answerArray[j] = guess
+                    } 
+                    correct--
+                }
+            }
+            return correct
+        }
+
+        function showAnswerAndCongratulatePlayer(answerArray) {
+            // alert(answerArray.join(" "))
+            // alert("Good job! The answer was " + word)
+            alert("Good job! The answer was " + wanswerArray.join(" "))
+        }
+
         var word = pickWord()
         var answerArray = setupAnswerArray(word)
-
         var remainingLetters = word.length
         var limit = 10
 
@@ -67,36 +79,16 @@
 
             limit--
             if (guess === null) {
-                // Exit the game loop
                 break
             } else if (guess.length !== 1) {
                 alert("Please enter a single letter.")
             } else {
                 // Update the game state with the guess
                 var correctGuess = updateGameStatus(guess, word, answerArray)
-
-                function correctGuess(guess, word, answerArray) {
-                    for (var j=0; j<word.length; j++) {
-                        if (word[j] === guess) {
-                            if (answerArray[j] !== '_') {
-                                alert("You've already got that letter")
-                            } else {
-                                answerArray[j] = guess
-                            } 
-                            remainingLetters--
-                        }
-                    }
-                }
+                remainingLetters -= correctGuess
             }            
         }
-
-        alert(answerArray.join(" "))
-        alert("Good job! The answer was " + word)
-
         showAnswerAndCongratulatePlayer(answerArray)
-        function showAnswerAndCongratulatePlayer(answerArray) {
-
-        }
     </script>
 </body>
 </html>
