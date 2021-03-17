@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1 id='main-heading'>Hello world!</h1>
+    <h2>I'm back. Pu hahahaha!</h2> -->
+    <h1 id='main-heading'>My Friends</h1>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // var headingElement = document.getElementById('main-heading')
+        // console.log(headingElement.innerHTML)
+        // var newHeading = prompt('Enter new heading: ')
+        // headingElement.innerHTML = newHeading
+        // $('#main-heading').text(newHeading)
+        // $('body').append('<p>This is a new paragraph</p>')
+        // $('h1').fadeOut(3000)
+        // $('h1').text('This will fade out').fadeOut(3000)
+        // $('h1').fadeOut(3000).fadeIn(2000)
+        // $('h2').slideUp(1000).slideDown(1000)
+        // var myFriends = ['Bill Gates', 'Steve Jobs', 'Warrent Buffett', 'Ben Johnson', 'Elon Musk']
+        // for (var i=0; i<myFriends.length; i++) {
+        //     $('body').append("<p id='myfriend'>" + myFriends[i] + '</p>')
+        // }
+        // $('p').fadeOut(3000).fadeIn(2000)
+        // var pElement = document.getElementById('myfriend')   // only the first one affects. Why?
+        // var pElement = document.getElementsByTagName('p')
+        // pElement.innerHTML = pElement.innerHTML + ' smells!'
+        // $('p').text('').text(' smells!')
+        // for (var i=0; i<2; i++) {
+        //     $('h1').fadeOut(1000*(i+1))
+        //     $('h1').fadeIn(1000*(i+1))
+        // }
+        // $('h1').fadeTo(2000, 0.3)
+        // var doHomeworkAlarm = function () {
+        //     alert('Hey! Time to do home work.')
+        // }
+        // var timeoutId = setTimeout(doHomeworkAlarm, 60000)
+        // clearTimeout(timeoutId)
+
+        var count = 1
+        function printMessage() {
+            console.log('You have been staring at the console for ' + count + ' seconds')
+            count++
+            if (count > 10) clearInterval(intervalId)
+        }
+
+        var intervalId = setInterval(printMessage, 1000)
+
+    </script>
+</body>
+</html>
