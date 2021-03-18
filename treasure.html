@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find the buried treasure!</title>
+</head>
+<body>
+    <h1 id='heading'>Find the buried treasure!</h1>
+
+    <!-- <img id='map' width=400 height=400 src='https://nostarch.com/images/treasuremap.png'> -->
+    <img id='map' width=400 height=400 src='treasuremap.png'>
+    <p id='hint'></p>
+    <p id='distance'></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // set the treasure place
+        function getRandomNumber(size) {
+            return Math.floor(Math.random() * size)
+        }
+        var clicks = 0
+        var width = 400, height = 400
+
+        var target = { x: getRandomNumber(width), y: getRandomNumber(height)}
+        $('#hint').text('target = ' + target.x + ',' + target.y)
+
+        function getDistance(event, target) {
+            var diffX = event.offsetX - target.x
+            var diffY = event.offsetY - target.y
+            return Math.sqrt(diffX**2 + diffY**2)
+        }
+
+        function getDistanceHint(distnace) {
+            if (distance < 10) return 'Boiling hot'
+            else if (distance < 20) return 'Really not'
+            else if (distance < 40) return 'less than 40'
+            else if (distance < 80) return 'less than 80'
+            else if (distance < 160) return 'less than 160'
+            else if (distance < 320) return 'less than 320'
+            else return ('freezing...')
+        }
+
+        $('#map').click(function(event) {
+            clicks++
+            if (clicks > 10) $('#distance').text("You're helpless!")
+            var distance = getDistance(event, target)
+            $('#distance').text(getDistanceHint(distance))
+            if (distance < 8) alert('Found the treasure in ' + clicks + ' clicks!')
+        })
+
+    </script>
+</body>
+</html>

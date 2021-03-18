@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive programming</title>
+</head>
+<body>
+    <h1 id='heading'>Hello world!</h1>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var leftOffset = 0
+        var timeOut = 0
+
+        var moveHeading = function() {
+            $("#heading").offset({ left: leftOffset })
+
+            leftOffset+= 20
+            // leftOffset++
+
+            if (leftOffset > 1000) {
+                leftOffset = 0
+                timeOut++
+                if (timeOut > 1) clearInterval(intervalId)
+            }
+        }
+
+        var intervalId = setInterval(moveHeading, 30)
+    </script>
+</body>
+</html>

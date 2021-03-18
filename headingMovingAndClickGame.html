@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mousemove and Click event handling</title>
+</head>
+<body>
+    <h1 id='heading'>Hello world!</h1>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+   <script>
+
+    var xLoc = 0, yLoc = 0
+    var term = 500
+    var incrementUnit = 100
+    var xLimit = 1280, yLimit = 800
+    var direction = 'right'
+    var times = 0
+
+    var intervalId = setInterval(function() {
+        if (direction === 'right') {
+            xLoc += incrementUnit
+            yLoc = 0
+            if (xLoc > xLimit) direction = 'down'
+        } else if (direction === 'down') {
+            xLoc = xLimit - 100
+            yLoc += incrementUnit
+            if (yLoc > yLimit) direction = 'left'
+        } else if (direction === 'left') {
+            xLoc -= incrementUnit
+            yLoc = yLimit - 100
+            if (xLoc < 0) direction = 'up'
+        } else if (direction === 'up') {
+            xLoc = 0
+            yLoc -= incrementUnit
+            if (yLoc < 0) direction = 'right'
+        }
+        $('h1').offset({ left: xLoc, top: yLoc })
+        times++
+        console.log(xLoc + ' ' + yLoc)
+
+    }, term)
+
+   </script>
+</body>
+</html>
