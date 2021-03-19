@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Racing</title>
+</head>
+<body>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        function Car(x, y) {
+            this.x = x
+            this.y = y
+            this.speed = 5
+            this.draw = function() {
+                var carHtml = "<img src='car.png'>"
+                this.carElement = $(carHtml)
+                this.carElement.css({ positoin: 'absolute', left: this.x, top: this.y })
+                $('body').append(this.carElement)
+            }
+        }
+
+        Car.prototype.moveRight = function() {
+            this.x+=this.speed
+            // this.x+=distance    // not working. why???
+            this.carElement.css({ posotion: 'absolute', left: this.x, top:this.y })
+        }
+
+        Car.prototype.moveLeft = function() {
+            this.x-=this.speed
+            this.carElement.css({ position: 'absolute', left: this.x, top:this.y })
+        }
+
+        Car.prototype.moveUp = function() {
+            this.y-=this.speed
+            this.carElement.css({ position: 'absolute', left: this.x, top:this.y })
+        }
+
+        Car.prototype.moveDown = function() {
+            this.y+=this.speed
+            this.carElement.css({ position: 'absolute', left: this.x, top:this.y })
+        }
+
+        var tesla = new Car(20, 20)
+        var nissan = new Car(100, 200)
+        tesla.draw()
+        nissan.draw()
+
+        // tesla.moveRight(10)
+        // tesla.moveRight(20)
+        // tesla.moveRight(30)
+
+    </script>
+
+</body>
+</html>

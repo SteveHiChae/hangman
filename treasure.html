@@ -13,6 +13,7 @@
     <img id='map' width=400 height=400 src='treasuremap.png'>
     <p id='hint'></p>
     <p id='distance'></p>
+    <p id='remainingClicks'></p>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -20,11 +21,13 @@
         function getRandomNumber(size) {
             return Math.floor(Math.random() * size)
         }
-        var clicks = 0
+        var clicks = 0, limit = 20
         var width = 400, height = 400
 
-        var target = { x: getRandomNumber(width), y: getRandomNumber(height)}
+        var target = {x: getRandomNumber(width), y: getRandomNumber(height)}
         $('#hint').text('target = ' + target.x + ',' + target.y)
+        $('#remainingClicks').text(`Max limit : ${limit}`)
+        $('#distance').text('distance')
 
         function getDistance(event, target) {
             var diffX = event.offsetX - target.x
@@ -32,11 +35,11 @@
             return Math.sqrt(diffX**2 + diffY**2)
         }
 
-        function getDistanceHint(distnace) {
-            if (distance < 10) return 'Boiling hot'
-            else if (distance < 20) return 'Really not'
-            else if (distance < 40) return 'less than 40'
+        function getDistanceHint(distance) {
+            if (distance < 40) return 'Boiling hot'
+            else if (distance < 60) return 'Really hot'
             else if (distance < 80) return 'less than 80'
+            else if (distance < 100) return 'less than 100'
             else if (distance < 160) return 'less than 160'
             else if (distance < 320) return 'less than 320'
             else return ('freezing...')
@@ -47,7 +50,8 @@
             if (clicks > 10) $('#distance').text("You're helpless!")
             var distance = getDistance(event, target)
             $('#distance').text(getDistanceHint(distance))
-            if (distance < 8) alert('Found the treasure in ' + clicks + ' clicks!')
+            $('#remainingClicks').text(`You've got ${limit - clicks} clicks to remain!`)
+            if (distance < 30) alert('Found the treasure in ' + clicks + ' clicks!')
         })
 
     </script>
