@@ -14,6 +14,7 @@
         function Car(x, y) {
             this.x = x
             this.y = y
+            this.speed = 50
         }
 
         Car.prototype.draw = function() {
@@ -25,7 +26,7 @@
         }
 
         Car.prototype.moveRight = function() {
-            this.x+=5
+            this.x+=this.speed
             this.carElement.css({ posotion: 'absolute', left: this.x, top:this.y })
         }
 
@@ -49,9 +50,15 @@
         tesla.draw()
         nissan.draw()
 
-        tesla.moveRight()
-        tesla.moveRight()
-        tesla.moveRight()
+        let count = 0
+        function printCar() {
+            tesla.moveRight()
+            console.log('print car.')
+            count++
+            if (count > 10) clearInterval(intervalId)
+        }
+
+        let intervalId = setInterval( printCar, 1000)
 
     </script>
 

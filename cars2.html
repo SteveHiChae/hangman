@@ -4,56 +4,142 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Car Racing</title>
+    <title>Car 2 Racing</title>
 </head>
 <body>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
 
-        function Car(x, y) {
+        var Car = function (x, y) {
             this.x = x
             this.y = y
-            this.speed = 5
-            this.draw = function() {
-                var carHtml = "<img src='car.png'>"
-                this.carElement = $(carHtml)
-                this.carElement.css({ positoin: 'absolute', left: this.x, top: this.y })
-                $('body').append(this.carElement)
-            }
+            this.draw()
         }
 
-        Car.prototype.moveRight = function() {
-            this.x+=this.speed
-            // this.x+=distance    // not working. why???
-            this.carElement.css({ posotion: 'absolute', left: this.x, top:this.y })
+        Car.prototype.draw = function() {
+            // var carHtml = "<img src='car.png'>"
+            var carHtml = '<img src="http://nostarch.com/images/car.png">'
+            this.carElement = $(carHtml)
+            this.carElement.css({ position: 'absolute', left: this.x, top: this.y })
+            $('body').append(this.carElement)
         }
 
-        Car.prototype.moveLeft = function() {
-            this.x-=this.speed
-            this.carElement.css({ position: 'absolute', left: this.x, top:this.y })
+        Car.prototype.moveRight = function(distance) {
+            this.x += distance 
+            this.carElement.css({ left: this.x, top:this.y })
         }
 
-        Car.prototype.moveUp = function() {
-            this.y-=this.speed
-            this.carElement.css({ position: 'absolute', left: this.x, top:this.y })
+        Car.prototype.moveLeft = function(distance) {
+            this.x -= distance
+            this.carElement.css({ left: this.x, top:this.y })
         }
 
-        Car.prototype.moveDown = function() {
-            this.y+=this.speed
-            this.carElement.css({ position: 'absolute', left: this.x, top:this.y })
+        Car.prototype.moveUp = function(distance) {
+            this.y -= distance
+            this.carElement.css({ left: this.x, top:this.y })
+        }
+
+        Car.prototype.moveDown = function(distance) {
+            this.y += distance
+            this.carElement.css({ left: this.x, top:this.y })
         }
 
         var tesla = new Car(20, 20)
-        var nissan = new Car(100, 200)
-        tesla.draw()
-        nissan.draw()
+        var nissan = new Car(120, 200)
+        // tesla.draw()
+        // nissan.draw()
 
-        // tesla.moveRight(10)
-        // tesla.moveRight(20)
-        // tesla.moveRight(30)
+        var count = 0
+        var intervalId = setInterval(function() {
+            count++
+            if (count>100) clearInterval(intervalId)
+            tesla.moveRight(Math.floor(Math.random() * 5))
+            nissan.moveRight(Math.floor(Math.random() * 5))
+        }, 30)
 
     </script>
 
 </body>
+</html> 
+
+<!--
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cars</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
+    <script>
+    var Car = function (x, y) {
+      this.x = x;
+      this.y = y;
+      this.draw();
+    };
+
+    Car.prototype.draw = function () {
+      var carHtml = '<img src="http://nostarch.com/images/car.png">';
+
+      this.carElement = $(carHtml);
+
+      this.carElement.css({
+        position: "absolute",
+        left: this.x,
+        top: this.y
+      });
+
+      $("body").append(this.carElement);
+    };
+
+    Car.prototype.moveRight = function (distance) {
+      this.x += distance;
+
+      this.carElement.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    Car.prototype.moveLeft = function (distance) {
+      this.x -= distance;
+
+      this.carElement.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    Car.prototype.moveUp = function (distance) {
+      this.y -= distance;
+
+      this.carElement.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    Car.prototype.moveDown = function (distance) {
+      this.y += distance;
+
+      this.carElement.css({
+        left: this.x,
+        top: this.y
+      });
+    };
+
+    var tesla = new Car(20, 20);
+    var nissan = new Car(100, 200);
+
+    var count = 0 
+    var intervalId = setInterval(function () {
+        count++
+        tesla.moveRight(Math.random() * 5);
+        nissan.moveRight(Math.random() * 5);
+        if (count > 100) clearInterval(intervalId)
+    }, 30);
+
+    </script>
+</body>
 </html>
+-->
