@@ -18,8 +18,8 @@
         }
 
         Car.prototype.draw = function() {
-            // var carHtml = "<img src='car.png'>"
-            var carHtml = '<img src="http://nostarch.com/images/car.png">'
+            var carHtml = "<img src='car.png'>"
+            // var carHtml = '<img src="http://nostarch.com/images/car.png">' // it's not working in the office
             this.carElement = $(carHtml)
             this.carElement.css({ position: 'absolute', left: this.x, top: this.y })
             $('body').append(this.carElement)
@@ -47,7 +47,8 @@
 
         var tesla = new Car(20, 20)
         var nissan = new Car(120, 200)
-        // tesla.draw()
+
+        // tesla.draw()   // Constructor already has it, so it has double effect living images on the screen
         // nissan.draw()
 
         var count = 0
